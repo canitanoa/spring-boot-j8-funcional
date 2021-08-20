@@ -1,12 +1,15 @@
 package com.example.demo.model;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class Person {
 
 	private Integer id;
 	private String name;
 	private LocalDate birthDate;
+
+	private Integer age;
 
 	public Person(Integer id, String name, LocalDate birthDate) {
 		super();
@@ -41,9 +44,11 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", birthDate=" + birthDate + "]";
+		return "Person [id=" + id + ", name=" + name + ", birthDate=" + birthDate + ", age=" + getAge() + "]";
 	}
-	
-	
+
+	public int getAge() {
+		return Period.between(birthDate, LocalDate.now()).getYears();
+	}
 
 }
